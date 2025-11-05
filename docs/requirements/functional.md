@@ -2,11 +2,23 @@
 
 ## RF001 - Cadastro de Usuário
 
-O sistema deve permitir o cadastro de um novo usuário informando nome, e-mail e senha. O e-mail deve ser único, e a senha deve ser armazenada de forma criptograda.
+O sistema deve permitir o cadastro de um novo usuário informando nome, e-mail e senha. O e-mail deve ser único, e a senha deve ser armazenada de forma criptografada.
+
+**Critérios de aceitação:**
+
+- Não deve permitir o cadastro de e-mails duplicados;
+- A senha deve ter no mínimo 8 caracteres;
+- Ao cadastrar com sucesso, o sistema deve exibir uma notificação de sucesso.
 
 ## RF002 - Login de Usuário
 
 O sistema deve permitir o login via e-mail e senha. Após autenticação bem-sucedida, o sistema deve gerar um token JWT para controle de sessão.
+
+**Critérios de aceitação:**
+
+- O sistema deve recusar logins com e-mail inexistente;
+- O sistema deve recusar logins com senha incorreta;
+- Após login bem-sucedido, deve gerar um token JWT válido por 60 minutos.
 
 ## RF003 - Redefinição de Senha
 
@@ -22,7 +34,7 @@ O usuário deve poder alterar o seu nome e senha. O e-mail não pode ser alterad
 
 ## RF006 - Cadastro de Categorias
 
-O sistema deve permitir criar novas categorias de transação. Cada categorias deve conter nome, ícone, cor e tipo (receita ou despesa).
+O sistema deve permitir criar novas categorias de transação. Cada categoria deve conter nome, ícone, cor e tipo (receita ou despesa).
 
 ## RF007 - Categorias Padrão
 
@@ -30,7 +42,20 @@ O sistema deve disponibilizar categorias padrão (como alimentação, transporte
 
 ## RF008 - Cadastro de Transações
 
-O sistema deve permitir o registro de transações financeiras. Cada transação deve conter: Tipo (receita ou despesa) - Valor - Data - Categoria - Descrição opcional. As transações devem ser associadas a um usuário autenticado.
+O sistema deve permitir o registro de transações financeiras. Cada transação deve conter:
+
+- Tipo (receita ou despesa);
+- Valor;
+- Data;
+- Categoria;
+- Descrição opcional.
+
+**Critérios de aceitação:**
+
+- O sistema deve validar que o valor é numérico e positivo;
+- O campo “Tipo” deve aceitar apenas “receita” ou “despesa”.
+
+As transações devem ser associadas a um usuário autenticado.
 
 ## RF009 - Edição e Exclusão de Transações
 
@@ -42,9 +67,13 @@ O sistema deve listar todas as transações do usuário, permitindo filtragem po
 
 ## RF011 - Dashboard Financeiro
 
-O sistema deve apresentar um painel visual com resumos financeiros, incluindo Saldo atual - Total de receitas e despesas do mês - Gráficos de evolução e distribuição
+O sistema deve apresentar um painel visual com resumos financeiros, incluindo:
 
-## RF012 - Relatórios FInanceiros
+- Saldo atual;
+- Total de receitas e despesas do mês;
+- Gráficos de evolução e distribuição.
+
+## RF012 - Relatórios Financeiros
 
 O sistema deve gerar relatórios mensais sob solicitação do usuário, apresentando totais por categoria e tipo de transação.
 

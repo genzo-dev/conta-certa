@@ -12,6 +12,13 @@ O sistema deve usar PostgreSQL como banco relacional, acessado via TypeORM.
 
 As senhas devem ser criptografadas com bcrypt. A autenticação deve usar JWT, e as rotas protegidas devem validar o token antes do acesso.
 
+**Critérios de aceitação:**
+
+- O token JWT deve expirar após 60 minutos de inatividade;
+- O refresh token deve ser renovado apenas mediante autenticação válida;
+- O sistema deve verificar se o e-mail informado está cadastrado antes de permitir a redefinição;
+- As requisições protegidas devem retornar 401 Unauthorized quando o token for inválido.
+
 ## RNF004 — Desempenho
 
 O sistema deve responder em até 2 segundos para operações comuns. Consultas ao banco devem usar paginação em listagens grandes, evitando sobrecarga e otimizando desempenho.
@@ -38,4 +45,4 @@ O backend deve registrar logs de erros e requisições e possuir um sistema bás
 
 ## RNF010 — Testes
 
-O sistema deve incluir testes unitários e de integração futuramente, para garantir estabilidade do código.
+O sistema deve incluir testes unitários e de integração futuramente, para garantir estabilidade do código. Os teste unitários devem ser realizados com **Jest** (backend) e **React Testing Library** (frontend).
