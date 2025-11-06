@@ -21,7 +21,7 @@
 | Código     | Descrição                      | Status              | Observações                                |
 | :--------- | :----------------------------- | :------------------ | :----------------------------------------- |
 | **RNF001** | Linguagem e Framework          | 🟢 **Concluído**    | Validado conforme os requisitos do projeto |
-| **RNF002** | Banco de Dados                 | 🟢 **Concluído**    | Validado conforme os requisitos do projeto |
+| **RNF002** | Banco de Dados                 | 🟡 **Em progresso** | Validado, mas ainda não implementado       |
 | **RNF003** | Segurança                      | 🟡 **Em progresso** | Validado, mas ainda não implementado       |
 | **RNF004** | Desempenho                     | 🔴 **Não iniciado** | Projeto ainda está na fase de documentação |
 | **RNF005** | Escalabilidade                 | 🔴 **Não iniciado** | Projeto ainda está na fase de documentação |
