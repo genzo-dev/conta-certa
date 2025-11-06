@@ -27,6 +27,12 @@ O projeto será publicado no LinkedIn de [Gabriel Enzo](https://www.linkedin.com
 
 Você também pode acessar a documentação a partir do próprio repositório a partir da pasta [`/docs/`](https://github.com/genzo-dev/conta-certa/tree/develop/docs).
 
+## Design (em breve):
+
+Endereço URL será disponilizado em breve.
+
+Design desenvolvido pelo [Yuri Nascimento](https://www.linkedin.com/in/oyuri-nas/) (UI/UX Designer).
+
 ## Como rodar o projeto (em breve):
 
 Instruções de execução com Docker Compose e scripts de inicialização serão adicionadas assim que o backend e frontend forem implementados.
