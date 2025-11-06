@@ -2,13 +2,13 @@
 
 ## Sobre o projeto:
 
-O **Conta Certa** é um projeto criado com a intenção de auxiliar no gerenciamento financeiro dos seus usuários. O método é simples: o usuário cadastra suas transações (receitas ou despesas) juntamente com a categoria relacionada a elas (alimentação, transporte, entre outras) e o sistema mostra como essas transações estão sendo distribuídas, reunindo tudo em um único lugar e exibindo o saldo atual, total de receitas e despesas do mês, além de gráficos que demonstram sua evolução.
+O **Conta Certa** é um projeto criado com o objetivo de auxiliar no gerenciamento financeiro dos seus usuários. O método é simples: o usuário cadastra suas transações (receitas ou despesas) juntamente com a categoria relacionada a elas (alimentação, transporte, entre outras) e o sistema mostra como essas transações estão sendo distribuídas, reunindo tudo em um único lugar e exibindo o saldo atual, total de receitas e despesas do mês, além de gráficos que demonstram sua evolução.
 
 O objetivo é oferecer ao usuário uma **visão clara e objetiva** de seus gastos, ajudando-o a compreender melhor seus hábitos financeiros e tomar decisões mais conscientes.
 
 ### Valor do projeto:
 
-O projeto está sendo desenvolvido na intenção de simular uma prática de desenvolvimento **FullStack**, buscando resolver alguma possível dor ou necessidade real de um determinado público. Toda documentação será disponibilizada tanto no **GitHub** (na pasta [/docs/](https://github.com/genzo-dev/conta-certa/tree/develop/docs) do repositório) quanto pelo **[Notion](https://www.notion.so/Conta-Certa-2a3bc7f8170180149c9ff53d248dade1?source=copy_link)**, além da documentação técnica gerada via Swagger.
+O projeto está sendo desenvolvido com o objetivo de simular uma prática completa de desenvolvimento **FullStack**, buscando resolver alguma possível dor ou necessidade real de um determinado público. Toda documentação será disponibilizada tanto no **GitHub** (na pasta [/docs/](https://github.com/genzo-dev/conta-certa/tree/develop/docs) do repositório) quanto pelo **[Notion](https://www.notion.so/Conta-Certa-2a3bc7f8170180149c9ff53d248dade1?source=copy_link)**, além da documentação técnica gerada via Swagger.
 
 O projeto será publicado no LinkedIn de [Gabriel Enzo](https://www.linkedin.com/in/gabriel-enzo-200403233/) (Desenvolvedor FullStack) e de [Yuri Nascimento](https://www.linkedin.com/in/oyuri-nas/) (UI/UX Designer).
 
