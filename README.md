@@ -8,7 +8,9 @@ O objetivo é oferecer ao usuário uma **visão clara e objetiva** de seus gasto
 
 ### Valor do projeto:
 
-O projeto está sendo desenvolvido na intenção de simular uma prática de desenvolvimento **_FullStack_** buscando resolver alguma possível dor ou problemática de um certo público. Será totalmente documentado tanto no GitHub (disponível na pasta docs - [`/docs/`](https://github.com/genzo-dev/conta-certa/tree/develop/docs))quanto pelo [Notion](https://www.notion.so/Conta-Certa-2a3bc7f8170180149c9ff53d248dade1?source=copy_link), além da documentação de algumas tecnologias como o Swagger. Além disso, o projeto será publicado no LinkedIn de [Gabriel Enzo](https://www.linkedin.com/in/gabriel-enzo-200403233/) (Desenvolvedor FullStack) e de [Yuri Nascimento](https://www.linkedin.com/in/oyuri-nas/) (UI/UX Designer).
+O projeto está sendo desenvolvido na intenção de simular uma prática de desenvolvimento **FullStack**, buscando resolver alguma possível dor ou necessidade real de um determinado público. Toda documentação será disponibilizada tanto no **GitHub** (na pasta [/docs/](https://github.com/genzo-dev/conta-certa/tree/develop/docs) do repositório) quanto pelo **[Notion](https://www.notion.so/Conta-Certa-2a3bc7f8170180149c9ff53d248dade1?source=copy_link)**, além da documentação técnica gerada via Swagger.
+
+O projeto será publicado no LinkedIn de [Gabriel Enzo](https://www.linkedin.com/in/gabriel-enzo-200403233/) (Desenvolvedor FullStack) e de [Yuri Nascimento](https://www.linkedin.com/in/oyuri-nas/) (UI/UX Designer).
 
 ## Tecnologias principais:
 
