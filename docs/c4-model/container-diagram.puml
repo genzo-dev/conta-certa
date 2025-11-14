@@ -1,0 +1,25 @@
+@startuml CONTAINER_DIAGRAM
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+title Diagrama de Containers – Conta Certa (Next.js + NestJS + PostgreSQL com TypeORM)
+
+' Atores
+Person(usuario, "Usuário", "Usuário que planeja gerenciar seu financeiro.")
+
+System_Boundary(sistem, "Conta Certa") {
+
+  Container(webapp, "Frontend", "Next.js", "Interface web onde o usuário cadastra suas transações, gerencia categorias e visualiza o dashboard financeiro.")
+      
+  Container(api, "Backend", "NestJS", "Processa regras de negócio, autenticação JWT, validação de dados, geração de relatórios e comunicação com o banco.")
+    
+  ContainerDb(db, "Banco de Dados", "PostgreSQL + TypeORM", "Armazena usuários, categorias, transações e demais dados persistentes do sistema.")
+}
+
+' Sistemas externos
+
+' Relacionamentos
+Rel(usuario, webapp, "Interage via navegador")
+Rel(webapp, api, "Envia requisições HTTP")
+Rel(api, db, "Leitura e gravação de dados")
+
+@enduml
