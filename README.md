@@ -24,6 +24,9 @@ O projeto será publicado no LinkedIn de [Gabriel Enzo](https://www.linkedin.com
 
 - [Requisitos](https://www.notion.so/Requisitos-2a3bc7f8170180db97e3fe1a46811c64?source=copy_link)
 - [Visão Geral do Produto](https://www.notion.so/Vis-o-Geral-2a3bc7f81701806fa1cdc235a82cbe22?source=copy_link)
+- [Diagrama Entidade-Relacionamento (DER)](https://www.notion.so/Diagrama-Entidade-Relacionamento-DER-2a3bc7f81701807da66ae0d178f9b0b1)
+- [Diagrama de Casos de Uso (UML)](https://www.notion.so/Diagrama-de-Casos-de-Uso-UML-2a3bc7f817018092ae3fcf8492aea34b)
+- [Modelo C4 - até o nível 2 (C2)](https://www.notion.so/Modelo-C4-at-C2-2a3bc7f817018098beacda07f4c28857)
 
 Você também pode acessar a documentação a partir do próprio repositório a partir da pasta [`/docs/`](https://github.com/genzo-dev/conta-certa/tree/develop/docs).
 
