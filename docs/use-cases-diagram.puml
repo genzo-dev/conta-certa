@@ -1,0 +1,52 @@
+@startuml US_CONTACERTA
+
+title Diagrama de Casos de Uso - Conta Certa
+
+left to right direction
+
+actor "Usuário" as usuario
+
+rectangle "Conta Certa" {
+  
+  ' Autenticação
+  usecase "Cadastrar Usuário" as UC01
+  usecase "Fazer Login" as UC02
+  usecase "Redefinir Senha" as UC03
+
+  ' Perfil
+  usecase "Visualizar Perfil" as UC04
+  usecase "Editar Perfil" as UC05
+
+  ' Categorias
+  usecase "Criar Categorias" as UC06
+  usecase "Listar Categorias" as UC07
+
+  ' Transações
+  usecase "Cadastrar Transação" as UC08
+  usecase "Editar Transação" as UC09
+  usecase "Excluir Transação" as UC10
+  usecase "Listar Transações" as UC11
+
+  ' Dashboard
+  usecase "Visualizar Dashboard Financeiro" as UC12
+}
+
+' Relações
+usuario --> UC01
+usuario --> UC02
+usuario --> UC03
+
+usuario --> UC04
+usuario --> UC05
+
+usuario --> UC06
+usuario --> UC07
+
+usuario --> UC08
+usuario --> UC09
+usuario --> UC10
+usuario --> UC11
+
+usuario --> UC12
+
+@enduml
