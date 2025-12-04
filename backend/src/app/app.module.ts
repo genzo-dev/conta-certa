@@ -29,7 +29,7 @@ import { UserModule } from 'src/user/user.module';
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule.forFeature(appConfig)],
       inject: [appConfig.KEY],
-      useFactory: async (appConfiguration: ConfigType<typeof appConfig>) => {
+      useFactory: (appConfiguration: ConfigType<typeof appConfig>) => {
         return {
           type: appConfiguration.database.type,
           host: appConfiguration.database.host,
