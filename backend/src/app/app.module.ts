@@ -5,6 +5,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigType } from '@nestjs/config';
 import appConfig from './app.config';
 import * as Joi from 'joi';
+import { AuthModule } from 'src/auth/auth.module';
+import { CategoryModule } from 'src/category/category.module';
+import { TransactionModule } from 'src/transaction/transaction.module';
+import { UserModule } from 'src/user/user.module';
 
 @Module({
   imports: [
@@ -38,6 +42,10 @@ import * as Joi from 'joi';
         };
       },
     }),
+    AuthModule,
+    CategoryModule,
+    TransactionModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
