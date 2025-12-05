@@ -1,1 +1,34 @@
-export class Transaction {}
+import { Category } from 'src/category/entities/category.entity';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+
+@Entity()
+export class Transaction {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
+
+  @Column()
+  transactionName: string;
+
+  @Column()
+  value: number;
+
+  // TODO: CRIAR COLUNA COM RELACIONAMENTO PARA CATEGORY (type: income / expense)
+  @ManyToOne(() => Category, (category) => category.transactions, {
+    onDelete: 'SET NULL',
+    nullable: true,
+  })
+  category: Category | null;
+
+  @CreateDateColumn()
+  createdAt?: Date;
+
+  @UpdateDateColumn()
+  updatedAt?: Date;
+}
