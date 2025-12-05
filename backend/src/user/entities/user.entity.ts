@@ -1,7 +1,9 @@
+import { Category } from 'src/category/entities/category.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -12,13 +14,16 @@ export class User {
   id: string;
 
   @Column()
-  icon: string;
+  userName: string;
 
   @Column()
-  categoryName: string;
+  email: string;
 
-  @Column({ type: Boolean })
-  isDefault: boolean;
+  @Column()
+  password: string;
+
+  @OneToMany(() => Category, (category) => category.user)
+  categories: Category[];
 
   @CreateDateColumn()
   createdAt?: Date;

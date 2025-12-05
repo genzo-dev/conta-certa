@@ -19,7 +19,6 @@ export class Transaction {
   @Column()
   value: number;
 
-  // TODO: CRIAR COLUNA COM RELACIONAMENTO PARA CATEGORY (type: income / expense)
   @ManyToOne(() => Category, (category) => category.transactions, {
     onDelete: 'SET NULL',
     nullable: true,

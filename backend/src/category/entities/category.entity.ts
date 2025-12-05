@@ -3,11 +3,13 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { CategoryType } from '../enums/category-type.enum';
+import { User } from 'src/user/entities/user.entity';
 
 @Entity()
 export class Category {
@@ -22,6 +24,15 @@ export class Category {
 
   @OneToMany(() => Transaction, (transaction) => transaction.category)
   transactions: Transaction[];
+
+  @Column({ default: 0 })
+  isDefault: boolean;
+
+  @ManyToOne(() => User, (user) => user.categories, {
+    nullable: true,
+    onDelete: 'CASCADE',
+  })
+  user: User | null;
 
   @CreateDateColumn()
   createdAt?: Date;
