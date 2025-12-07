@@ -6,7 +6,6 @@ import {
   IsString,
   MaxLength,
 } from 'class-validator';
-import { Category } from 'src/category/entities/category.entity';
 
 export class CreateTransactionDto {
   @ApiProperty({
