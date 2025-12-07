@@ -20,7 +20,7 @@ export class User {
   email: string;
 
   @Column()
-  password: string;
+  passwordHash: string;
 
   @OneToMany(() => Category, (category) => category.user)
   categories: Category[];

@@ -19,6 +19,9 @@ export class Category {
   @Column()
   icon: string;
 
+  @Column()
+  categoryName: string;
+
   @Column({ type: 'enum', enum: CategoryType })
   type: CategoryType;
 
