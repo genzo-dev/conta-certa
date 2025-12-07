@@ -10,13 +10,15 @@ import {
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { ApiOperation } from '@nestjs/swagger';
+import { ApiConflictResponse, ApiCreatedResponse, ApiOperation } from '@nestjs/swagger';
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @ApiOperation({ summary: 'Usuário poderá criar sua conta.' })
+  @ApiCreatedResponse({ description: 'Conta/Usuário criado com sucesso.' })
+  @ApiConflictResponse({ description: 'E-mail já cadastrado.' })
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
