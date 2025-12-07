@@ -17,24 +17,23 @@ export class UserService {
   async create(createUserDto: CreateUserDto) {
     try {
       const passwordHash = await this.hashingService.hash(
-        createUserDto.password
-      )
+        createUserDto.password,
+      );
 
       const newUserData = {
         userName: createUserDto.userName,
         email: createUserDto.email,
         passwordHash,
-      }
+      };
 
-      const newUser = this.userRepository.create(newUserData)
+      const newUser = this.userRepository.create(newUserData);
 
-      await this.userRepository.save(newUser)
+      await this.userRepository.save(newUser);
 
-      return newUser
-
+      return newUser;
     } catch (error) {
-      if (error.code === '23505'){
-        throw new ConflictException('E-mail já cadastrado.')
+      if (error.code === '23505') {
+        throw new ConflictException('E-mail já cadastrado.');
       }
 
       throw error;
