@@ -1,7 +1,9 @@
 "use server";
 
-import { createLoginSession } from "@/libs/manage-login";
+import { createLoginSession } from "@/libs/auth/manage-login";
+import { LoginSchema } from "@/libs/auth/schema-login";
 import { apiRequest } from "@/utils/api-request";
+import { getZodErrorMessages } from "@/utils/get-zod-error-messages";
 
 type LoginActionState = {
   email: string;
@@ -22,27 +24,21 @@ export async function loginAction(
   const formObj = Object.fromEntries(formData.entries());
   const formUser = formObj?.email?.toString() || "";
 
-  const payload = {
-    email: formObj.email?.toString() || "",
-    password: formObj.password?.toString() || "",
-  };
+  const parsedFormData = LoginSchema.safeParse(formObj);
 
-  // TODO: criar LoginSchema com zod:
-  // const parseFormData = LoginSchema.safeParse(formObj)
-
-  // if (!parsedFormData.success) {
-  //   return {
-  //     name: formUser,
-  //     errors: getZodErrorMessages(parsedFormData.error.format()),
-  //   };
-  // }
+  if (!parsedFormData.success) {
+    return {
+      email: formUser,
+      errors: getZodErrorMessages(parsedFormData.error.format()),
+    };
+  }
 
   const loginResponse = await apiRequest<{ accessToken: string }>("/auth", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(payload),
+    body: JSON.stringify(parsedFormData.data),
   });
 
   if (!loginResponse.success) {

@@ -14,7 +14,7 @@ export default function HomePage() {
 
   return (
     <section>
-      <form action={action}>
+      <form action={action} noValidate>
         <input
           type="email"
           name="email"
