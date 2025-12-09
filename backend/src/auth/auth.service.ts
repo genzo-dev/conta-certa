@@ -38,14 +38,42 @@ export class AuthService {
       throw new UnauthorizedException('Usuário ou senha inválidos.');
     }
 
-    return 'usuário logado';
+    return this.createTokens(user);
   }
 
-  // private async createTokens (user: User) {
-  //   const accessTokenPromise = this.jwtService.signAsync<Partial<User>>(
-  //     user.id,
-  //     this.jwtConfiguration.jwtTtl,
-  //     { email: user?.email },
-  //   )
-  // }
+  private async createTokens(user: User) {
+    const accessTokenPromise = this.signJwtAsync<Partial<User>>(
+      user.id,
+      this.jwtConfiguration.jwtTtl,
+      { email: user?.email },
+    );
+
+    // TODO: criar função para gerar refreshToken
+    // const refreshTokenPromise = this.signJwtAsync(
+
+    // )
+
+    const [accessToken] = await Promise.all([accessTokenPromise]);
+
+    return {
+      accessToken,
+    };
+  }
+
+  private async signJwtAsync<T>(sub: string, expiresIn: number, payload?: T) {
+    return await this.jwtService.signAsync(
+      {
+        sub,
+        ...payload,
+      },
+      {
+        audience: this.jwtConfiguration.audience,
+        issuer: this.jwtConfiguration.issuer,
+        secret: this.jwtConfiguration.secret,
+        expiresIn,
+      },
+    );
+  }
+
+  // TODO: criar função para construir refreshToken
 }
