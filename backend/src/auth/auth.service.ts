@@ -81,7 +81,7 @@ export class AuthService {
   }
 
   // TODO: criar função para construir refreshToken
-  private async RefreshTokens(refreshTokenDto: RefreshTokenDto) {
+  async refreshTokens(refreshTokenDto: RefreshTokenDto) {
     try {
       const { sub } = await this.jwtService.verifyAsync(
         refreshTokenDto.refreshToken,
