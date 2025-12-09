@@ -7,6 +7,7 @@ import type { ConfigType } from '@nestjs/config';
 import jwtConfig from './config/jwt.config';
 import { JwtService } from '@nestjs/jwt';
 import { LoginDto } from './dto/login.dto';
+import { RefreshTokenDto } from './dto/refresh-token.dto';
 
 @Injectable()
 export class AuthService {
@@ -48,15 +49,19 @@ export class AuthService {
       { email: user?.email },
     );
 
-    // TODO: criar função para gerar refreshToken
-    // const refreshTokenPromise = this.signJwtAsync(
+    const refreshTokenPromise = this.signJwtAsync(
+      user.id,
+      this.jwtConfiguration.jwtRefreshTtl,
+    );
 
-    // )
-
-    const [accessToken] = await Promise.all([accessTokenPromise]);
+    const [accessToken, refreshToken] = await Promise.all([
+      accessTokenPromise,
+      refreshTokenPromise,
+    ]);
 
     return {
       accessToken,
+      refreshToken,
     };
   }
 
@@ -76,4 +81,25 @@ export class AuthService {
   }
 
   // TODO: criar função para construir refreshToken
+  private async RefreshTokens(refreshTokenDto: RefreshTokenDto) {
+    try {
+      const { sub } = await this.jwtService.verifyAsync(
+        refreshTokenDto.refreshToken,
+        this.jwtConfiguration,
+      );
+
+      const user = await this.userRepository.findOneBy({
+        id: sub,
+        // TODO: adicionar argumento 'active: true'
+      });
+
+      if (!user) {
+        throw new Error('Usuário não autorizado!');
+      }
+
+      return this.createTokens(user);
+    } catch (error) {
+      throw new UnauthorizedException(error.message);
+    }
+  }
 }
