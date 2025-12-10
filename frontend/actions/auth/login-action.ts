@@ -4,6 +4,7 @@ import { createLoginSession } from "@/libs/auth/manage-login";
 import { LoginSchema } from "@/libs/auth/schema-login";
 import { apiRequest } from "@/utils/api-request";
 import { getZodErrorMessages } from "@/utils/get-zod-error-messages";
+import { redirect } from "next/navigation";
 
 type LoginActionState = {
   email: string;
@@ -49,4 +50,5 @@ export async function loginAction(
   }
 
   await createLoginSession(loginResponse.data.accessToken);
+  redirect("/dashboard");
 }
