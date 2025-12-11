@@ -12,7 +12,7 @@ export default function HomePage() {
   };
 
   const [state, action, isPending] = useActionState(loginAction, initialState);
-  // TODO: adicionar outras configurações como notificações (toast) com SearchParams e router
+  // TODO: mudar conteúdo da HomePage para o dashboard do usuário
 
   const router = useRouter();
   const searchParams = useSearchParams();

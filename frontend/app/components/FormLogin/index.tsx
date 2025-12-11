@@ -6,6 +6,7 @@ import { useActionState, useEffect } from "react";
 import { toast } from "react-toastify";
 import InputText from "../InputText";
 import Button from "../Button";
+import LoaderSpin from "../LoaderSpin";
 
 export default function FormLogin() {
   const initialState = {
@@ -47,7 +48,7 @@ export default function FormLogin() {
   }, [userChanged, created, router]);
 
   return (
-    <form action={action} className="px-30" noValidate>
+    <form action={action} className="flex flex-col gap-4 w-full" noValidate>
       <InputText
         labelText="E-mail:"
         type="email"
@@ -63,14 +64,13 @@ export default function FormLogin() {
         name="password"
         placeholder="Digite sua senha..."
         disabled={isPending}
-        defaultValue={state?.email}
       />
 
-      <Button textButton="Entrar" type="submit" disabled={isPending} />
+      <Button type="submit" disabled={isPending}>
+        {!isPending && "Entrar"}
+        {isPending && <LoaderSpin />}
+      </Button>
 
-      {/* <button disabled={isPending} type="submit">
-        Entrar
-      </button> */}
       {!!state?.errors && <p className="text-red-600">{state.errors}</p>}
     </form>
   );

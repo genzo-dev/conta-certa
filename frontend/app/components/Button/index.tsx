@@ -1,20 +1,21 @@
 import clsx from "clsx";
+import React from "react";
 
 type ButtonProps = {
-  textButton: string;
+  children: React.ReactNode;
 } & React.ComponentProps<"button">;
 
-export default function Button({ textButton, ...props }: ButtonProps) {
+export default function Button({ children, ...props }: ButtonProps) {
   return (
     <button
       {...props}
       className={clsx(
-        "py-2 rounded-sm w-full mt-2",
-        "bg-[#6DB571] text-black",
-        "disabled:bg-[#477149] disabled:cursor-not-allowed"
+        "flex flex-col py-2 rounded-sm w-full min-h-10 mt-2 justify-center items-center",
+        "bg-[#6DB571] text-black transition hover:brightness-90 hover:cursor-pointer",
+        "disabled:brightness-90 disabled:cursor-not-allowed"
       )}
     >
-      {textButton}
+      {children}
     </button>
   );
 }
