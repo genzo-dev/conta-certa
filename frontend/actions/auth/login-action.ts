@@ -3,6 +3,7 @@
 import { createLoginSession } from "@/libs/auth/manage-login";
 import { LoginSchema } from "@/libs/auth/schema-login";
 import { apiRequest } from "@/utils/api-request";
+import { asyncDelay } from "@/utils/async-delay";
 import { getZodErrorMessages } from "@/utils/get-zod-error-messages";
 import { redirect } from "next/navigation";
 
@@ -26,6 +27,8 @@ export async function loginAction(
   const formUser = formObj?.email?.toString() || "";
 
   const parsedFormData = LoginSchema.safeParse(formObj);
+
+  await asyncDelay(3000, true);
 
   if (!parsedFormData.success) {
     return {
