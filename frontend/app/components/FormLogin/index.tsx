@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useActionState, useEffect } from "react";
 import { toast } from "react-toastify";
 import InputText from "../InputText";
+import Button from "../Button";
 
 export default function FormLogin() {
   const initialState = {
@@ -46,7 +47,7 @@ export default function FormLogin() {
   }, [userChanged, created, router]);
 
   return (
-    <form action={action} noValidate>
+    <form action={action} className="px-30" noValidate>
       <InputText
         labelText="E-mail:"
         type="email"
@@ -65,9 +66,11 @@ export default function FormLogin() {
         defaultValue={state?.email}
       />
 
-      <button disabled={isPending} type="submit">
+      <Button textButton="Entrar" type="submit" disabled={isPending} />
+
+      {/* <button disabled={isPending} type="submit">
         Entrar
-      </button>
+      </button> */}
       {!!state?.errors && <p className="text-red-600">{state.errors}</p>}
     </form>
   );

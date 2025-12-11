@@ -15,7 +15,6 @@ export function ToastifyContainer() {
       pauseOnHover
       theme="light"
       transition={Bounce}
-      aria-label={true}
     />
   );
 }

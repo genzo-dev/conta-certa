@@ -9,7 +9,7 @@ export default function InputText({ labelText, ...props }: InputTextProps) {
   const id = useId();
 
   return (
-    <div className="flex flex-col gap-1 px-30">
+    <div className="flex flex-col gap-1">
       {labelText && <label htmlFor={id}>{labelText}</label>}
 
       <input
