@@ -3,6 +3,7 @@ import FormLogin from "../components/FormLogin";
 import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
+import Links from "../components/Links";
 
 export default function LoginPage() {
   return (
@@ -66,10 +67,7 @@ export default function LoginPage() {
 
           {/* TODO: criar componentes de link */}
           <p>
-            Não tem conta?
-            <Link href="#" className="underline">
-              Criar conta
-            </Link>
+            Não tem conta? <Links href="#" textLink="Criar conta" />
           </p>
 
           <Link href="#" className="underline">
