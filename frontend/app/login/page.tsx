@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
 import Links from "../components/Links";
+import Logo from "../components/Logo";
 
 export default function LoginPage() {
   return (
@@ -20,10 +21,11 @@ export default function LoginPage() {
           width="577"
           height="866"
           className="hidden lg:block mb-10"
+          priority
         />
 
-        {/* TODO: transformar em logo */}
-        <div className="flex gap-2 items-center justify-center">
+        {/* TODO: transformar em logo com mode: auth | nav */}
+        {/* <div className="flex gap-2 items-center justify-center">
           <Image
             src="/conta-certa-logo.svg"
             alt="logo"
@@ -34,7 +36,8 @@ export default function LoginPage() {
           <h1 className="text-4xl lg:text-6xl">
             Conta <label className="font-bold">Certa</label>
           </h1>
-        </div>
+        </div> */}
+        <Logo mode="auth" />
       </div>
       <div className="lg:w-2/5 lg:px-8 xl:px-12">
         <div
@@ -62,17 +65,13 @@ export default function LoginPage() {
             </div>
           </div>
 
-          {/* TODO: ver por qual motivo os inputs não crescem junto da tela */}
           <FormLogin />
 
-          {/* TODO: criar componentes de link */}
           <p>
             Não tem conta? <Links href="#" textLink="Criar conta" />
           </p>
 
-          <Link href="#" className="underline">
-            Esqueceu a senha?
-          </Link>
+          <Links href="#" textLink="Esqueceu a senha?" />
         </div>
       </div>
     </section>
