@@ -11,7 +11,10 @@ async function bootstrap() {
       'Registre suas transações financeiras e veja como seu dinheiro está sendo utilizado.',
     )
     .setVersion('0.01')
-    .addBearerAuth()
+    .addBearerAuth(
+      { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
+      'access-token',
+    )
     .build();
 
   const document = SwaggerModule.createDocument(app, documentBuildConfig);
