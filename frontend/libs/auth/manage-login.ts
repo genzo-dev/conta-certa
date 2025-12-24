@@ -1,5 +1,7 @@
+import { apiAuthenticatedRequest } from "@/utils/api-authenticated-request";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { PublicUserDto } from "../user/schema";
 
 const loginExpSeconds = Number(process.env.LOGIN_EXPIRATION_SECONDS) || 86400;
 const loginCookieName = process.env.LOGIN_COOKIE_NAME || "loginSession";
@@ -17,7 +19,7 @@ export async function createLoginSession(jwt: string) {
   });
 }
 
-export async function getLoginSessionForApi() {
+export async function getLoginSession() {
   const cookieStore = await cookies();
 
   const jwt = cookieStore.get(loginCookieName)?.value;
@@ -27,10 +29,20 @@ export async function getLoginSessionForApi() {
   return jwt;
 }
 
-export async function requireLoginSessionForApiOrRedirect() {
-  const isAuthenticated = await getLoginSessionForApi();
+export async function requireLoginSessionOrRedirect() {
+  const isAuthenticated = await getLoginSession();
 
   if (!isAuthenticated) {
     redirect("/login");
   }
+}
+
+export async function getCurrentUser(): Promise<PublicUserDto | null> {
+  const res = await apiAuthenticatedRequest<PublicUserDto>("/user/me", {
+    method: "GET",
+    cache: "no-store",
+  });
+
+  if (!res.success) return null;
+  return res.data;
 }
