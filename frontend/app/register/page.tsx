@@ -33,25 +33,12 @@ export default function RegisterPage() {
             "flex flex-col gap-4 items-center justify-center bg-[#D9D9D9] rounded-lg px-5 lg:px-10 py-11 lg:py-16"
           )}
         >
-          <div className="flex flex-col gap-2 lg:gap-4 lg:mb-4">
+          <div className="flex flex-col gap-2 lg:gap-4 lg:mb-4 lg:self-start">
             <div className="flex gap-2 justify-center items-center lg:justify-start">
               <CircleUserIcon className="lg:w-10 lg:h-10" />
               <h1 className="text-2xl lg:text-3xl font-semibold">
                 Criar conta
               </h1>
-            </div>
-            <div>
-              <p
-                className={clsx(
-                  "text-sm text-center",
-                  "sm:text-base",
-                  "md:text-lg",
-                  "lg:text-start"
-                )}
-              >
-                Crie sua conta, informe suas transações e veja como está usando
-                seu dinheiro!
-              </p>
             </div>
           </div>
 

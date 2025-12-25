@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import InputText from "../InputText";
 import Button from "../Button";
 import LoaderSpin from "../LoaderSpin";
-import { registerAction } from "@/actions/auth/register-action";
+import { registerAction } from "@/actions/user/register-action";
 import { CreateUserSchema } from "@/libs/user/schema";
 
 export default function FormRegister() {
@@ -60,7 +60,7 @@ export default function FormRegister() {
         name="userName"
         placeholder="Digite seu e-mail..."
         disabled={isPending}
-        defaultValue={state.user.userName}
+        defaultValue={state.user?.userName}
       />
 
       <InputText
@@ -69,7 +69,7 @@ export default function FormRegister() {
         name="email"
         placeholder="Digite seu e-mail..."
         disabled={isPending}
-        defaultValue={state.user.email}
+        defaultValue={state.user?.email}
       />
 
       <InputText
@@ -80,12 +80,20 @@ export default function FormRegister() {
         disabled={isPending}
       />
 
+      <InputText
+        labelText="Confirme a senha:"
+        type="password"
+        name="password2"
+        placeholder="Digite sua senha..."
+        disabled={isPending}
+      />
+
       <Button type="submit" disabled={isPending}>
         {!isPending && "Criar conta"}
         {isPending && <LoaderSpin />}
       </Button>
 
-      {!!state?.errors && <p className="text-red-600">{state.errors}</p>}
+      {!!state?.errors && <p className="text-red-600">{state.errors[0]}</p>}
     </form>
   );
 }

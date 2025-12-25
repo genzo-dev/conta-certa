@@ -2,14 +2,18 @@
 
 import { createLoginSession } from "@/libs/auth/manage-login";
 import { LoginSchema } from "@/libs/auth/schema-login";
-import { CreateUserDto, CreateUserSchema } from "@/libs/user/schema";
+import {
+  CreateUserDto,
+  CreateUserSchema,
+  PublicUserSchema,
+} from "@/libs/user/schema";
 import { apiRequest } from "@/utils/api-request";
 import { asyncDelay } from "@/utils/async-delay";
 import { getZodErrorMessages } from "@/utils/get-zod-error-messages";
 import { redirect } from "next/navigation";
 
 type RegisterActionState = {
-  user: CreateUserDto;
+  user: Partial<CreateUserDto> | null;
   errors: string[];
   success: boolean;
 };
@@ -33,7 +37,7 @@ export async function registerAction(
 
   if (!parsedFormData.success) {
     return {
-      user: CreateUserSchema.parse(formObj),
+      user: PublicUserSchema.parse(formObj),
       errors: getZodErrorMessages(parsedFormData.error.format()),
       success: false,
     };
@@ -67,7 +71,7 @@ export async function registerAction(
 
   if (!registerResponse.success) {
     return {
-      user: CreateUserSchema.parse(formObj),
+      user: PublicUserSchema.parse(formObj),
       errors: registerResponse.errors,
       success: registerResponse.success,
     };
