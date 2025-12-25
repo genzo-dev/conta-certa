@@ -1,9 +1,7 @@
 "use server";
 
 import { createLoginSession } from "@/libs/auth/manage-login";
-import { LoginSchema } from "@/libs/auth/schema-login";
 import {
-  CreateUserDto,
   CreateUserSchema,
   PublicUserDto,
   PublicUserSchema,
@@ -44,24 +42,6 @@ export async function registerAction(
     };
   }
 
-  // const loginResponse = await apiRequest<{ accessToken: string }>("/auth", {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  //   body: JSON.stringify(parsedFormData.data),
-  // });
-
-  // if (!loginResponse.success) {
-  //   return {
-  //     name: formUser,
-  //     email: formUser,
-  //     errors: loginResponse.errors,
-  //   };
-  // }
-
-  // await createLoginSession(loginResponse.data.accessToken);
-
   const registerResponse = await apiRequest<{ accessToken: string }>("/user", {
     method: "POST",
     headers: {
@@ -78,5 +58,23 @@ export async function registerAction(
     };
   }
 
-  redirect("/dashboard");
+  const loginResponse = await apiRequest<{ accessToken: string }>("/auth", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(parsedFormData.data),
+  });
+
+  if (!loginResponse.success) {
+    return {
+      user: PublicUserSchema.parse(formObj),
+      errors: loginResponse.errors,
+      success: registerResponse.success,
+    };
+  }
+
+  await createLoginSession(loginResponse.data.accessToken);
+
+  redirect("/");
 }
