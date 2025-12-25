@@ -53,5 +53,5 @@ export async function loginAction(
   }
 
   await createLoginSession(loginResponse.data.accessToken);
-  redirect("/dashboard");
+  redirect("/?created=1");
 }

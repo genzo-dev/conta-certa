@@ -4,11 +4,12 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 
-export default function DashBoardPage() {
+export function AuthToasts() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const userChanged = searchParams.get("userChanged");
   const created = searchParams.get("created");
+  const registerUser = searchParams.get("registerUser");
 
   useEffect(() => {
     if (userChanged === "1") {
@@ -21,12 +22,20 @@ export default function DashBoardPage() {
 
     if (created === "1") {
       toast.dismiss();
-      toast.success("Seu usuário criado.");
+      toast.success("Login realizado com sucesso.");
       const url = new URL(window.location.href);
       url.searchParams.delete("created");
       router.replace(url.toString());
     }
-  }, [userChanged, created, router]);
 
-  return <div>DashBoardPage</div>;
+    if (registerUser === "1") {
+      toast.dismiss();
+      toast.success("Seu usuário criado com sucesso.");
+      const url = new URL(window.location.href);
+      url.searchParams.delete("registerUser");
+      router.replace(url.toString());
+    }
+  }, [userChanged, created, registerUser, router]);
+
+  return null;
 }

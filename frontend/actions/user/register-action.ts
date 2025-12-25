@@ -76,5 +76,5 @@ export async function registerAction(
 
   await createLoginSession(loginResponse.data.accessToken);
 
-  redirect("/");
+  redirect("/?registerUser=1");
 }
