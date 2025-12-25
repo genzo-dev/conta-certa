@@ -5,6 +5,7 @@ import { LoginSchema } from "@/libs/auth/schema-login";
 import {
   CreateUserDto,
   CreateUserSchema,
+  PublicUserDto,
   PublicUserSchema,
 } from "@/libs/user/schema";
 import { apiRequest } from "@/utils/api-request";
@@ -13,7 +14,7 @@ import { getZodErrorMessages } from "@/utils/get-zod-error-messages";
 import { redirect } from "next/navigation";
 
 type RegisterActionState = {
-  user: Partial<CreateUserDto> | null;
+  user: PublicUserDto;
   errors: string[];
   success: boolean;
 };

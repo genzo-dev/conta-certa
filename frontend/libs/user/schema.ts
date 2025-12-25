@@ -8,7 +8,7 @@ export const PublicUserSchema = z.object({
 const CreateUserBase = z.object({
   userName: z.string().trim().nonempty("Informe um nome de usuário"),
   email: z.string().email("Informe um e-mail válido").trim(),
-  password: z.string().trim(),
+  password: z.string().trim().nonempty("Informe sua senha"),
   password2: z.string().trim(),
 });
 

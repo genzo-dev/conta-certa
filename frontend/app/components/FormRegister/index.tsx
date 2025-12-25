@@ -1,6 +1,5 @@
 "use client";
 
-import { loginAction } from "@/actions/auth/login-action";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useActionState, useEffect } from "react";
 import { toast } from "react-toastify";
@@ -8,15 +7,11 @@ import InputText from "../InputText";
 import Button from "../Button";
 import LoaderSpin from "../LoaderSpin";
 import { registerAction } from "@/actions/user/register-action";
-import { CreateUserSchema } from "@/libs/user/schema";
+import { PublicUserSchema } from "@/libs/user/schema";
 
 export default function FormRegister() {
   const [state, action, isPending] = useActionState(registerAction, {
-    user: {
-      userName: "",
-      email: "",
-      password: "",
-    },
+    user: PublicUserSchema.parse({}),
     errors: [],
     success: false,
   });
@@ -26,13 +21,6 @@ export default function FormRegister() {
   const searchParams = useSearchParams();
   const userChanged = searchParams.get("userChanged");
   const created = searchParams.get("created");
-
-  useEffect(() => {
-    if (state?.errors?.length > 0) {
-      toast.dismiss();
-      toast.error(state.errors.join(", "));
-    }
-  }, [state]);
 
   useEffect(() => {
     if (userChanged === "1") {
@@ -69,7 +57,6 @@ export default function FormRegister() {
         name="email"
         placeholder="Digite seu e-mail..."
         disabled={isPending}
-        defaultValue={state.user?.email}
       />
 
       <InputText
