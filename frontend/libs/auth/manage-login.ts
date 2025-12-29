@@ -19,6 +19,42 @@ export async function createLoginSession(jwt: string) {
   });
 }
 
+export async function setTokens(accessToken: string, refreshToken: string) {
+  const cookieStore = await cookies();
+
+  cookieStore.set("accessToken", accessToken, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "lax",
+    expires: new Date(Date.now() + 15 * 60 * 1000), // 15 minutes
+    path: "/",
+  });
+
+  cookieStore.set("refreshToken", refreshToken, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "lax",
+    expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days
+    path: "/",
+  });
+}
+
+export async function getTokens() {
+  const cookieStore = await cookies();
+
+  return {
+    accessToken: cookieStore.get("accessToken")?.value || null,
+    refreshToken: cookieStore.get("refreshToken")?.value || null,
+  };
+}
+
+export async function clearTokens() {
+  const cookieStore = await cookies();
+
+  cookieStore.delete("accessToken");
+  cookieStore.delete("refreshToken");
+}
+
 export async function getLoginSession() {
   const cookieStore = await cookies();
 
@@ -44,5 +80,6 @@ export async function getCurrentUser(): Promise<PublicUserDto | null> {
   });
 
   if (!res.success) return null;
+  console.log("Dados do usuário:", res.data);
   return res.data;
 }

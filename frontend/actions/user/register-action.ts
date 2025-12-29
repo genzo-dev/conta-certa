@@ -1,6 +1,6 @@
 "use server";
 
-import { createLoginSession } from "@/libs/auth/manage-login";
+import { createLoginSession, setTokens } from "@/libs/auth/manage-login";
 import {
   CreateUserSchema,
   PublicUserDto,
@@ -58,7 +58,10 @@ export async function registerAction(
     };
   }
 
-  const loginResponse = await apiRequest<{ accessToken: string }>("/auth", {
+  const loginResponse = await apiRequest<{
+    accessToken: string;
+    refreshToken: string;
+  }>("/auth", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -73,8 +76,11 @@ export async function registerAction(
       success: registerResponse.success,
     };
   }
-
-  await createLoginSession(loginResponse.data.accessToken);
+  await setTokens(
+    loginResponse.data.accessToken,
+    loginResponse.data.refreshToken
+  );
+  // await createLoginSession(loginResponse.data.accessToken);
 
   redirect("/?registerUser=1");
 }

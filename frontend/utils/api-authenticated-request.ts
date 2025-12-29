@@ -1,14 +1,18 @@
 import "server-only";
 import { apiRequest, ApiRequest } from "./api-request";
-import { getLoginSession } from "@/libs/auth/manage-login";
+import {
+  getLoginSession,
+  getTokens,
+  setTokens,
+} from "@/libs/auth/manage-login";
 
 export async function apiAuthenticatedRequest<T>(
   path: string,
   options?: RequestInit
 ): Promise<ApiRequest<T>> {
-  const jwtToken = await getLoginSession();
+  const jwtToken = await getTokens();
 
-  if (!jwtToken) {
+  if (!jwtToken?.accessToken) {
     return {
       success: false,
       errors: ["Usuário não autenticado."],
@@ -18,7 +22,7 @@ export async function apiAuthenticatedRequest<T>(
 
   const headers = {
     ...options?.headers,
-    Authorization: `Bearer ${jwtToken}`,
+    Authorization: `Bearer ${jwtToken.accessToken}`,
   };
 
   return apiRequest<T>(path, {

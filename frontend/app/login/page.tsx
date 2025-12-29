@@ -16,7 +16,7 @@ export default function LoginPage() {
     >
       <div className="flex flex-col items-center justify-center lg:w-3/5 lg:h-full lg:bg-[#6DB571]">
         <Image
-          src="/money-logo.svg"
+          src="/imgs/money-logo.svg"
           alt="logo"
           width="577"
           height="866"
@@ -68,7 +68,7 @@ export default function LoginPage() {
           <FormLogin />
 
           <p>
-            Não tem conta? <Links href="#" textLink="Criar conta" />
+            Não tem conta? <Links href="/register" textLink="Criar conta" />
           </p>
 
           <Links href="#" textLink="Esqueceu a senha?" />

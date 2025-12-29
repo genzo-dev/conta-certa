@@ -11,7 +11,7 @@ export default function Logo({ mode }: LogoProps) {
         <div>
           <div className="flex gap-2 items-center justify-center">
             <Image
-              src="/conta-certa-logo.svg"
+              src="/imgs/conta-certa-logo.svg"
               alt="logo"
               width="112"
               height="112"
@@ -29,7 +29,7 @@ export default function Logo({ mode }: LogoProps) {
         <div>
           <div className="flex gap-1 sm:gap-2 items-center">
             <Image
-              src="/conta-certa-logo.svg"
+              src="/imgs/conta-certa-logo.svg"
               alt="logo"
               width="112"
               height="112"

@@ -1,7 +1,12 @@
+"use server";
+
 import { getCurrentUser } from "@/libs/auth/manage-login";
 import Logo from "../Logo";
+import { cookies } from "next/headers";
 
 export default async function Nav() {
+  // cookies();
+
   const user = await getCurrentUser();
 
   return (

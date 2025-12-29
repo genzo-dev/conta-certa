@@ -1,6 +1,6 @@
 "use server";
 
-import { createLoginSession } from "@/libs/auth/manage-login";
+import { createLoginSession, setTokens } from "@/libs/auth/manage-login";
 import { LoginSchema } from "@/libs/auth/schema-login";
 import { apiRequest } from "@/utils/api-request";
 import { asyncDelay } from "@/utils/async-delay";
@@ -37,7 +37,10 @@ export async function loginAction(
     };
   }
 
-  const loginResponse = await apiRequest<{ accessToken: string }>("/auth", {
+  const loginResponse = await apiRequest<{
+    accessToken: string;
+    refreshToken: string;
+  }>("/auth", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -52,6 +55,12 @@ export async function loginAction(
     };
   }
 
-  await createLoginSession(loginResponse.data.accessToken);
+  console.log("Login successful:", loginResponse.data);
+
+  await setTokens(
+    loginResponse.data.accessToken,
+    loginResponse.data.refreshToken
+  );
+  // await createLoginSession(loginResponse.data.accessToken);
   redirect("/?created=1");
 }
