@@ -1,6 +1,10 @@
 import { apiAuthenticatedRequest } from "@/utils/api-authenticated-request";
 import { cookies } from "next/headers";
 import { PublicUserDto } from "../user/schema";
+import {
+  accessTokenExpires,
+  refreshTokenExpires,
+} from "@/utils/expires-time-cookies";
 
 export async function setTokens(accessToken: string, refreshToken: string) {
   const cookieStore = await cookies();
@@ -9,7 +13,7 @@ export async function setTokens(accessToken: string, refreshToken: string) {
     httpOnly: true,
     secure: true,
     sameSite: "lax",
-    expires: new Date(Date.now() + 15 * 60 * 1000), // 15 minutes
+    expires: new Date(Date.now() + accessTokenExpires), // 15 minutes
     path: "/",
   });
 
@@ -17,7 +21,7 @@ export async function setTokens(accessToken: string, refreshToken: string) {
     httpOnly: true,
     secure: true,
     sameSite: "lax",
-    expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days
+    expires: new Date(Date.now() + refreshTokenExpires), // 7 days
     path: "/",
   });
 }

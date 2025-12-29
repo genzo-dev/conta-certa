@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { apiRequest } from "./utils/api-request";
+import {
+  accessTokenExpires,
+  refreshTokenExpires,
+} from "./utils/expires-time-cookies";
 
 export async function proxy(req: NextRequest) {
   const accessToken = req.cookies.get("accessToken")?.value;
@@ -35,14 +39,14 @@ export async function proxy(req: NextRequest) {
         httpOnly: true,
         secure: true,
         sameSite: "lax",
-        expires: new Date(Date.now() + 15 * 60 * 1000), // 15 minutes
+        expires: new Date(Date.now() + accessTokenExpires), // 15 minutes
         path: "/",
       });
       response.cookies.set("refreshToken", newRefresh.data.refreshToken, {
         httpOnly: true,
         secure: true,
         sameSite: "lax",
-        expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days
+        expires: new Date(Date.now() + refreshTokenExpires), // 7 days
         path: "/",
       });
       return response;
