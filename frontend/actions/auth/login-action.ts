@@ -55,12 +55,10 @@ export async function loginAction(
     };
   }
 
-  console.log("Login successful:", loginResponse.data);
-
   await setTokens(
     loginResponse.data.accessToken,
     loginResponse.data.refreshToken
   );
-  // await createLoginSession(loginResponse.data.accessToken);
+
   redirect("/?created=1");
 }

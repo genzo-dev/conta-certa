@@ -39,12 +39,6 @@ export class UserController {
     return this.userService.findAll();
   }
 
-  // @ApiOperation({ summary: 'Encontra um único usuário.' })
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.userService.findOne(+id);
-  // }
-
   @ApiBearerAuth('access-token')
   @ApiOperation({ summary: 'Encontra o usuário autenticado.' })
   @UseGuards(AuthTokenGuard)

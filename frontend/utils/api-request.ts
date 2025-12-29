@@ -40,8 +40,6 @@ export async function apiRequest<T>(
       status: res.status,
     };
   } catch (err) {
-    console.log(err);
-
     return {
       errors: ["Falha ao conectar-se ao servidor"],
       success: false,

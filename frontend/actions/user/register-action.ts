@@ -80,7 +80,6 @@ export async function registerAction(
     loginResponse.data.accessToken,
     loginResponse.data.refreshToken
   );
-  // await createLoginSession(loginResponse.data.accessToken);
 
   redirect("/?registerUser=1");
 }
