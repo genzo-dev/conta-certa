@@ -15,7 +15,6 @@ export default function FormLogin() {
   };
 
   const [state, action, isPending] = useActionState(loginAction, initialState);
-  // TODO: adicionar outras configurações como notificações (toast) com SearchParams e router
 
   const router = useRouter();
   const searchParams = useSearchParams();

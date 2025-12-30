@@ -25,7 +25,7 @@ export class AuthService {
 
     const user = await this.userRepository.findOneBy({
       email: loginDto.email,
-      // TODO: colocar uma variável 'active' no banco para segurança do usuário e do sistema
+      isActive: true,
     });
 
     if (user) {
@@ -80,7 +80,6 @@ export class AuthService {
     );
   }
 
-  // TODO: criar função para construir refreshToken
   async refreshTokens(refreshTokenDto: RefreshTokenDto) {
     try {
       const { sub } = await this.jwtService.verifyAsync(
@@ -90,7 +89,7 @@ export class AuthService {
 
       const user = await this.userRepository.findOneBy({
         id: sub,
-        // TODO: adicionar argumento 'active: true'
+        isActive: true,
       });
 
       if (!user) {

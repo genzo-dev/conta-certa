@@ -6,6 +6,7 @@ import clsx from "clsx";
 import Links from "../components/Links";
 import Logo from "../components/Logo";
 import FormRegister from "../components/FormRegister";
+import { Suspense } from "react";
 
 export default function RegisterPage() {
   return (
@@ -42,7 +43,9 @@ export default function RegisterPage() {
             </div>
           </div>
 
-          <FormRegister />
+          <Suspense fallback={null}>
+            <FormRegister />
+          </Suspense>
 
           <p>
             Já tem uma conta? <Links href="/login" textLink="Entrar" />

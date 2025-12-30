@@ -1,10 +1,6 @@
 import "server-only";
 import { apiRequest, ApiRequest } from "./api-request";
-import {
-  getLoginSession,
-  getTokens,
-  setTokens,
-} from "@/libs/auth/manage-login";
+import { getTokens } from "@/libs/auth/manage-login";
 
 export async function apiAuthenticatedRequest<T>(
   path: string,

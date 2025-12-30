@@ -1,6 +1,6 @@
 "use server";
 
-import { createLoginSession, setTokens } from "@/libs/auth/manage-login";
+import { setTokens } from "@/libs/auth/manage-login";
 import { LoginSchema } from "@/libs/auth/schema-login";
 import { apiRequest } from "@/utils/api-request";
 import { asyncDelay } from "@/utils/async-delay";

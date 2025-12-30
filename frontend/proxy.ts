@@ -4,13 +4,27 @@ import {
   accessTokenExpires,
   refreshTokenExpires,
 } from "./utils/expires-time-cookies";
+import { clearTokens } from "./libs/auth/manage-login";
 
 export async function proxy(req: NextRequest) {
   const accessToken = req.cookies.get("accessToken")?.value;
   const refreshToken = req.cookies.get("refreshToken")?.value;
 
   if (accessToken) {
-    return NextResponse.next();
+    const me = await apiRequest("/user/me", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    if (me.success) {
+      return NextResponse.next();
+    }
+    if (!me.success) {
+      await clearTokens();
+      return NextResponse.redirect(new URL("/login", req.url));
+    }
   }
 
   if (!accessToken && !refreshToken) {
@@ -57,8 +71,5 @@ export async function proxy(req: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    "/((?!login|register|_next|favicon.ico|imgs|images|icons).*)",
-    "/api/protected/:path*",
-  ], // rotas protegidas
+  matcher: ["/((?!login|register|_next|favicon.ico|imgs|images|icons).*)"], // rotas protegidas
 };

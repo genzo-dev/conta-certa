@@ -5,6 +5,7 @@ import Link from "next/link";
 import clsx from "clsx";
 import Links from "../components/Links";
 import Logo from "../components/Logo";
+import { Suspense } from "react";
 
 export default function LoginPage() {
   return (
@@ -65,7 +66,9 @@ export default function LoginPage() {
             </div>
           </div>
 
-          <FormLogin />
+          <Suspense fallback={null}>
+            <FormLogin />
+          </Suspense>
 
           <p>
             Não tem conta? <Links href="/register" textLink="Criar conta" />

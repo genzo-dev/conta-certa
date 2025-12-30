@@ -38,9 +38,9 @@ export class AuthTokenGuard implements CanActivate {
         token,
         this.jwtConfiguration,
       );
-      // TODO: adicionar activate caso usuário esteja ativo no sistema
       const user = await this.userRepository.findOneBy({
         id: payload.sub,
+        isActive: true,
       });
 
       if (!user) {

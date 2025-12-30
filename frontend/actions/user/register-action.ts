@@ -1,6 +1,6 @@
 "use server";
 
-import { createLoginSession, setTokens } from "@/libs/auth/manage-login";
+import { setTokens } from "@/libs/auth/manage-login";
 import {
   CreateUserSchema,
   PublicUserDto,
