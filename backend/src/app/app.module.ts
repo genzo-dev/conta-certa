@@ -9,9 +9,18 @@ import { AuthModule } from 'src/auth/auth.module';
 import { CategoryModule } from 'src/category/category.module';
 import { TransactionModule } from 'src/transaction/transaction.module';
 import { UserModule } from 'src/user/user.module';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 
 @Module({
   imports: [
+    ThrottlerModule.forRoot({
+      throttlers: [
+        {
+          ttl: 10000,
+          limit: 10,
+        },
+      ],
+    }),
     ConfigModule.forRoot({
       validationSchema: Joi.object({
         DB_TYPE: Joi.required(),
@@ -48,6 +57,6 @@ import { UserModule } from 'src/user/user.module';
     UserModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, { provide: 'APP_GUARD', useClass: ThrottlerGuard }],
 })
 export class AppModule {}
