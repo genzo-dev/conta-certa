@@ -1,9 +1,7 @@
 "use client";
 
 import { loginAction } from "@/actions/auth/login-action";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useActionState, useEffect } from "react";
-import { toast } from "react-toastify";
+import { useActionState } from "react";
 import InputText from "../InputText";
 import Button from "../Button";
 import LoaderSpin from "../LoaderSpin";
@@ -15,36 +13,6 @@ export default function FormLogin() {
   };
 
   const [state, action, isPending] = useActionState(loginAction, initialState);
-
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const userChanged = searchParams.get("userChanged");
-  const created = searchParams.get("created");
-
-  useEffect(() => {
-    if (state?.errors?.length > 0) {
-      toast.dismiss();
-      toast.error(state.errors.join(", "));
-    }
-  }, [state]);
-
-  useEffect(() => {
-    if (userChanged === "1") {
-      toast.dismiss();
-      toast.success("Seu usuário foi modificado. Faça login novamente.");
-      const url = new URL(window.location.href);
-      url.searchParams.delete("userChanged");
-      router.replace(url.toString());
-    }
-
-    if (created === "1") {
-      toast.dismiss();
-      toast.success("Seu usuário criado.");
-      const url = new URL(window.location.href);
-      url.searchParams.delete("created");
-      router.replace(url.toString());
-    }
-  }, [userChanged, created, router]);
 
   return (
     <form action={action} className="flex flex-col gap-4 w-full" noValidate>

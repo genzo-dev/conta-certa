@@ -1,4 +1,3 @@
-// TODO: analisar mantenho como class(dto) ou transformo em interface
 export class TokenPayloadDto {
   sub: string;
   email: string;

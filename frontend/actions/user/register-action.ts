@@ -7,7 +7,6 @@ import {
   PublicUserSchema,
 } from "@/libs/user/schema";
 import { apiRequest } from "@/utils/api-request";
-import { asyncDelay } from "@/utils/async-delay";
 import { getZodErrorMessages } from "@/utils/get-zod-error-messages";
 import { redirect } from "next/navigation";
 
@@ -31,8 +30,6 @@ export async function registerAction(
 
   const formObj = Object.fromEntries(formData.entries());
   const parsedFormData = CreateUserSchema.safeParse(formObj);
-
-  await asyncDelay(3000, true);
 
   if (!parsedFormData.success) {
     return {

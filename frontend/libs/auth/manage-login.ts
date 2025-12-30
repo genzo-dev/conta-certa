@@ -49,6 +49,5 @@ export async function getCurrentUser(): Promise<PublicUserDto | null> {
   });
 
   if (!res.success) return null;
-  console.log("Dados do usuário:", res.data);
   return res.data;
 }

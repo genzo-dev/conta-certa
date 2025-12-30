@@ -19,8 +19,6 @@ async function bootstrap() {
       if (!origin || corsWhitelist.includes(origin)) {
         return callback(null, true);
       }
-      console.log('CORS whitelist:', corsWhitelist);
-      console.log('Request origin:', origin);
 
       return callback(new Error('Not allowed by CORS'));
     },
