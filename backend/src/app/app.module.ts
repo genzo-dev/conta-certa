@@ -22,6 +22,8 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
       ],
     }),
     ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: process.env.NODE_ENV === 'test' ? '.env.test' : '.env',
       validationSchema: Joi.object({
         DB_TYPE: Joi.required(),
         DB_HOST: Joi.required(),
@@ -31,6 +33,7 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
         POSTGRES_PASSWORD: Joi.required(),
         DATABASE_AUTO_LOAD_ENTITIES: Joi.number().min(0).max(1).default(0),
         DATABASE_SYNCHRONIZE: Joi.number().min(0).max(1).default(0),
+        DATABASE_DROP_SCHEMA: Joi.number().min(0).max(1).default(0),
       }),
     }),
 
@@ -48,6 +51,7 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
           password: appConfiguration.database.password,
           autoLoadEntities: appConfiguration.database.autoLoadEntities,
           synchronize: appConfiguration.database.synchronize,
+          dropSchema: appConfiguration.database.dropSchema,
         };
       },
     }),
