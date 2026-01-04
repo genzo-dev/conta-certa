@@ -10,6 +10,7 @@ import { CategoryModule } from 'src/category/category.module';
 import { TransactionModule } from 'src/transaction/transaction.module';
 import { UserModule } from 'src/user/user.module';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { TestModule } from 'src/test/test.module';
 
 @Module({
   imports: [
@@ -59,6 +60,7 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
     CategoryModule,
     TransactionModule,
     UserModule,
+    ...(process.env.NODE_ENV === 'test' ? [TestModule] : []),
   ],
   controllers: [AppController],
   providers: [AppService, { provide: 'APP_GUARD', useClass: ThrottlerGuard }],
