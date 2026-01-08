@@ -1,4 +1,4 @@
-import { getCurrentUser } from "@/libs/auth/manage-login";
+import { getCurrentUser } from "@/libs/auth/get-current-user";
 import Logo from "../Logo";
 
 export default async function Nav() {

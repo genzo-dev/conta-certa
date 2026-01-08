@@ -1,6 +1,4 @@
-import { apiAuthenticatedRequest } from "@/utils/api-authenticated-request";
 import { cookies } from "next/headers";
-import { PublicUserDto } from "../user/schema";
 import {
   accessTokenExpires,
   refreshTokenExpires,
@@ -40,14 +38,4 @@ export async function clearTokens() {
 
   cookieStore.delete("accessToken");
   cookieStore.delete("refreshToken");
-}
-
-export async function getCurrentUser(): Promise<PublicUserDto | null> {
-  const res = await apiAuthenticatedRequest<PublicUserDto>("/user/me", {
-    method: "GET",
-    cache: "no-store",
-  });
-
-  if (!res.success) return null;
-  return res.data;
 }
