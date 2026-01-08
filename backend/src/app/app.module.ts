@@ -9,10 +9,22 @@ import { AuthModule } from 'src/auth/auth.module';
 import { CategoryModule } from 'src/category/category.module';
 import { TransactionModule } from 'src/transaction/transaction.module';
 import { UserModule } from 'src/user/user.module';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { TestModule } from 'src/test/test.module';
 
 @Module({
   imports: [
+    ThrottlerModule.forRoot({
+      throttlers: [
+        {
+          ttl: 10000,
+          limit: 10,
+        },
+      ],
+    }),
     ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: process.env.NODE_ENV === 'test' ? '.env.test' : '.env',
       validationSchema: Joi.object({
         DB_TYPE: Joi.required(),
         DB_HOST: Joi.required(),
@@ -22,6 +34,7 @@ import { UserModule } from 'src/user/user.module';
         POSTGRES_PASSWORD: Joi.required(),
         DATABASE_AUTO_LOAD_ENTITIES: Joi.number().min(0).max(1).default(0),
         DATABASE_SYNCHRONIZE: Joi.number().min(0).max(1).default(0),
+        DATABASE_DROP_SCHEMA: Joi.number().min(0).max(1).default(0),
       }),
     }),
 
@@ -39,6 +52,7 @@ import { UserModule } from 'src/user/user.module';
           password: appConfiguration.database.password,
           autoLoadEntities: appConfiguration.database.autoLoadEntities,
           synchronize: appConfiguration.database.synchronize,
+          dropSchema: appConfiguration.database.dropSchema,
         };
       },
     }),
@@ -46,8 +60,9 @@ import { UserModule } from 'src/user/user.module';
     CategoryModule,
     TransactionModule,
     UserModule,
+    ...(process.env.NODE_ENV === 'test' ? [TestModule] : []),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, { provide: 'APP_GUARD', useClass: ThrottlerGuard }],
 })
 export class AppModule {}

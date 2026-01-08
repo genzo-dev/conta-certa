@@ -8,7 +8,8 @@ export default registerAs('app', () => ({
     username: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DB,
-    autoLoadEntities: Boolean(process.env.DATABASE_AUTO_LOAD_ENTITIES),
-    synchronize: Boolean(process.env.DATABASE_SYNCHRONIZE),
+    autoLoadEntities: Boolean(Number(process.env.DATABASE_AUTO_LOAD_ENTITIES)),
+    synchronize: Boolean(Number(process.env.DATABASE_SYNCHRONIZE)),
+    dropSchema: Boolean(Number(process.env.DATABASE_DROP_SCHEMA)),
   },
 }));

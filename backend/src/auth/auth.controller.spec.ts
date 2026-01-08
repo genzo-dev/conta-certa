@@ -1,20 +1,49 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 
 describe('AuthController', () => {
   let controller: AuthController;
 
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      controllers: [AuthController],
-      providers: [AuthService],
-    }).compile();
+  const authServiceMock = {
+    login: jest.fn(),
+    refreshTokens: jest.fn(),
+  };
 
-    controller = module.get<AuthController>(AuthController);
+  beforeEach(() => {
+    controller = new AuthController(
+      authServiceMock as Partial<AuthService> as AuthService,
+    );
   });
 
-  it('should be defined', () => {
-    expect(controller).toBeDefined();
+  it('login - should be return a new accessToken and refreshToken', async () => {
+    const argument = {
+      email: '<EMAIL>',
+      password: 'password',
+    };
+    const expectedResult = {
+      accessToken: '<ACCESS_TOKEN>',
+      refreshToken: '<REFRESH_TOKEN>',
+    };
+
+    authServiceMock.login.mockResolvedValue(expectedResult);
+
+    const result = await controller.login(argument);
+    expect(result).toEqual(expectedResult);
+  });
+
+  it('refreshTokens - should be return a new accessToken and refreshToken', async () => {
+    const argument = {
+      refreshToken: '<REFRESH_TOKEN>',
+    };
+
+    const expectedResult = {
+      accessToken: '<ACCESS_TOKEN>',
+      refreshToken: '<REFRESH_TOKEN>',
+    };
+
+    authServiceMock.refreshTokens.mockResolvedValue(expectedResult);
+
+    const result = await controller.refreshTokens(argument);
+    expect(result).toEqual(expectedResult);
   });
 });
