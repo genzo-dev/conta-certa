@@ -9,7 +9,7 @@ describe('AuthController', () => {
     refreshTokens: jest.fn(),
   };
 
-  beforeEach(async () => {
+  beforeEach(() => {
     controller = new AuthController(
       authServiceMock as Partial<AuthService> as AuthService,
     );

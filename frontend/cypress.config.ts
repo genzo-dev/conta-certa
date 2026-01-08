@@ -1,5 +1,4 @@
 import { defineConfig } from "cypress";
-import { apiUrl } from "./utils/api-request";
 
 export default defineConfig({
   e2e: {

@@ -16,7 +16,7 @@ describe("Login E2E", () => {
 
   it("shows error with invalid credentials", () => {
     cy.login("invalid@email.com", "123456");
-    cy.contains("Usuário ou senha inválidos.").should("be.visible");
+    cy.contains("E-mail ou senha inválidos.").should("be.visible");
   });
 
   it("keeps session after page reload", () => {

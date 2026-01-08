@@ -36,7 +36,7 @@ export class AuthService {
     }
 
     if (!user || !passwordIsValid) {
-      throw new UnauthorizedException('Usuário ou senha inválidos.');
+      throw new UnauthorizedException('E-mail ou senha inválidos.');
     }
 
     return this.createTokens(user);

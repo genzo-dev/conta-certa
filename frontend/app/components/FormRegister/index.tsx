@@ -20,7 +20,7 @@ export default function FormRegister() {
         labelText="Nome de usuário:"
         type="text"
         name="userName"
-        placeholder="Digite seu e-mail..."
+        placeholder="Digite seu nome..."
         disabled={isPending}
         defaultValue={state.user?.userName}
       />

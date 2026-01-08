@@ -60,7 +60,7 @@ describe('AuthService', () => {
     jest.spyOn(hashingService, 'compare').mockResolvedValue(false);
 
     await expect(authService.login(loginDto)).rejects.toThrow(
-      'Usuário ou senha inválidos.',
+      'E-mail ou senha inválidos.',
     );
   });
 
