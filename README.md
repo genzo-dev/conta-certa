@@ -10,7 +10,7 @@ O objetivo é oferecer ao usuário uma **visão clara e objetiva** de seus gasto
 
 O projeto está sendo desenvolvido com o objetivo de simular uma prática completa de desenvolvimento **FullStack**, buscando resolver alguma possível dor ou necessidade real de um determinado público. Toda documentação será disponibilizada tanto no **GitHub** (na pasta [/docs/](https://github.com/genzo-dev/conta-certa/tree/develop/docs) do repositório) quanto pelo **[Notion](https://www.notion.so/Conta-Certa-2a3bc7f8170180149c9ff53d248dade1?source=copy_link)**, além da documentação técnica gerada via Swagger.
 
-O projeto será publicado no LinkedIn de [Gabriel Enzo](https://www.linkedin.com/in/gabriel-enzo-200403233/) (Desenvolvedor FullStack) e de [Yuri Nascimento](https://www.linkedin.com/in/oyuri-nas/) (UI/UX Designer).
+O projeto será publicado no LinkedIn de [Gabriel Enzo](https://www.linkedin.com/in/gabriel-enzo-200403233/) (Desenvolvedor FullStack).
 
 ## Tecnologias principais:
 
@@ -30,11 +30,11 @@ O projeto será publicado no LinkedIn de [Gabriel Enzo](https://www.linkedin.com
 
 Você também pode acessar a documentação a partir do próprio repositório a partir da pasta [`/docs/`](https://github.com/genzo-dev/conta-certa/tree/develop/docs).
 
-## Design (em breve):
+<!-- ## Design (em breve):
 
 Endereço URL será disponilizado em breve.
 
-Design desenvolvido pelo [Yuri Nascimento](https://www.linkedin.com/in/oyuri-nas/) (UI/UX Designer).
+Design desenvolvido pelo [Yuri Nascimento](https://www.linkedin.com/in/oyuri-nas/) (UI/UX Designer). -->
 
 ## Como rodar o projeto (em breve):
 
@@ -45,8 +45,8 @@ Instruções de execução com Docker Compose e scripts de inicialização serã
 ### Documentação:
 
 - [x] Desenvolver requisitos
-- [ ] Desenvolver documento de visão geral do sistema
-- [ ] Criar documentação visual (Casos de Uso, DER e C4)
+- [x] Desenvolver documento de visão geral do sistema
+- [x] Criar documentação visual (Casos de Uso, DER e C4)
 
 ### Backend:
 
