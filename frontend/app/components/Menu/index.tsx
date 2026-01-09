@@ -13,6 +13,7 @@ import { useState } from "react";
 import LogoutTestBtn from "../LogoutTestBtn";
 import Link from "next/link";
 import MenuLink from "../MenuLink";
+import clsx from "clsx";
 
 export default function Menu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,26 +22,37 @@ export default function Menu() {
     <div>
       {!isOpen && (
         <button
-          className="ml-4 sm:ml-6 md:ml-12 mt-5 border p-1 rounded-md hover:cursor-pointer hover:bg-green-200 transition"
+          className={clsx(
+            "ml-4 sm:ml-6 md:ml-12 mt-5 border p-1 rounded-md hover:cursor-pointer",
+            "hover:bg-gray-200 transition"
+          )}
           onClick={() => setIsOpen(!isOpen)}
         >
-          <MenuIcon />
+          <MenuIcon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
         </button>
       )}
 
       {isOpen && (
-        <div className="h-screen w-1/4 bg-gray-300 border-r border-gray-400">
+        <div
+          className={clsx(
+            "h-full w-screen sm:w-96",
+            "bg-gray-300 border-r border-gray-400"
+          )}
+        >
           <div className="h-full flex flex-col pt-8 px-6">
-            <div className="flex justify-between items-center  mb-12">
+            <div className="flex justify-between items-center mb-12">
               <strong className="text-sm sm:text-base md:text-lg lg:text-xl">
                 Menu
               </strong>
 
               <button
-                className="border p-1 rounded-md hover:cursor-pointer hover:bg-red-200 transition"
+                className={clsx(
+                  "border p-1 rounded-md hover:cursor-pointer transition",
+                  "hover:bg-gray-200"
+                )}
                 onClick={() => setIsOpen(!isOpen)}
               >
-                <XIcon />
+                <XIcon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
               </button>
             </div>
             <div className="flex flex-col gap-4">

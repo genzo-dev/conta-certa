@@ -1,7 +1,7 @@
-import { AuthToasts } from "./components/AuthToasts";
-import Nav from "./components/Nav";
+import { AuthToasts } from "../components/AuthToasts";
+import Nav from "../components/Nav";
 import { Suspense } from "react";
-import Menu from "./components/Menu";
+import Menu from "../components/Menu";
 
 export default function HomePage() {
   return (
@@ -9,9 +9,6 @@ export default function HomePage() {
       <Suspense fallback={null}>
         <AuthToasts />
       </Suspense>
-
-      <Nav />
-      <Menu />
     </>
   );
 }
