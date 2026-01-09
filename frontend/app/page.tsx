@@ -1,7 +1,7 @@
 import { AuthToasts } from "./components/AuthToasts";
 import Nav from "./components/Nav";
-import LogoutTestBtn from "./components/LogoutTestBtn";
 import { Suspense } from "react";
+import Menu from "./components/Menu";
 
 export default function HomePage() {
   return (
@@ -11,7 +11,7 @@ export default function HomePage() {
       </Suspense>
 
       <Nav />
-      <LogoutTestBtn />
+      <Menu />
     </>
   );
 }
