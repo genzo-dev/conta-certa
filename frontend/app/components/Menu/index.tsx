@@ -1,8 +1,18 @@
 "use client";
 
-import { MenuIcon, XIcon } from "lucide-react";
+import {
+  ArrowLeftRightIcon,
+  CircleDollarSignIcon,
+  CircleUserIcon,
+  ClipboardPenIcon,
+  DollarSignIcon,
+  MenuIcon,
+  XIcon,
+} from "lucide-react";
 import { useState } from "react";
 import LogoutTestBtn from "../LogoutTestBtn";
+import Link from "next/link";
+import MenuLink from "../MenuLink";
 
 export default function Menu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,7 +43,26 @@ export default function Menu() {
                 <XIcon />
               </button>
             </div>
-            <div>
+            <div className="flex flex-col gap-4">
+              <MenuLink
+                href="/"
+                linkName="Dashboard"
+                icon={CircleDollarSignIcon}
+              />
+
+              <MenuLink
+                href="/"
+                linkName="Gerenciar categorias"
+                icon={ClipboardPenIcon}
+              />
+
+              <MenuLink
+                href="/"
+                linkName="Informar transação"
+                icon={ArrowLeftRightIcon}
+              />
+
+              <MenuLink href="/" linkName="Perfil" icon={CircleUserIcon} />
               <LogoutTestBtn />
             </div>
           </div>
