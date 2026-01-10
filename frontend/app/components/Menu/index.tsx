@@ -19,11 +19,11 @@ export default function Menu() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div>
+    <div className="relative">
       {!isOpen && (
         <button
           className={clsx(
-            "ml-4 sm:ml-6 md:ml-12 mt-5 border p-1 rounded-md hover:cursor-pointer",
+            "absolute left-0 ml-4 sm:ml-6 md:ml-12 mt-5 border p-1 rounded-md hover:cursor-pointer",
             "hover:bg-gray-200 transition"
           )}
           onClick={() => setIsOpen(!isOpen)}
@@ -35,7 +35,7 @@ export default function Menu() {
       {isOpen && (
         <div
           className={clsx(
-            "h-full w-screen sm:w-96",
+            "absolute h-full w-screen sm:w-96 z-40",
             "bg-gray-300 border-r border-gray-400"
           )}
         >
@@ -63,18 +63,22 @@ export default function Menu() {
               />
 
               <MenuLink
-                href="/"
+                href="/categories"
                 linkName="Gerenciar categorias"
                 icon={ClipboardPenIcon}
               />
 
               <MenuLink
-                href="/"
+                href="/transactions"
                 linkName="Informar transação"
                 icon={ArrowLeftRightIcon}
               />
 
-              <MenuLink href="/" linkName="Perfil" icon={CircleUserIcon} />
+              <MenuLink
+                href="/profile"
+                linkName="Perfil"
+                icon={CircleUserIcon}
+              />
               <LogoutTestBtn />
             </div>
           </div>

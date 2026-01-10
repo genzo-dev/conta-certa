@@ -27,10 +27,10 @@ export default function ApplicationLayout({
   return (
     <div className="h-screen flex flex-col bg-[#C5C5C5]">
       <Nav />
-      <div className="flex flex-1">
+      <div className="flex flex-1 relative">
         <Menu />
 
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 pt-24 px-12">{children}</main>
       </div>
     </div>
   );
