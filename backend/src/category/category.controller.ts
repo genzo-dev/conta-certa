@@ -6,20 +6,31 @@ import {
   Patch,
   Param,
   Delete,
+  Req,
+  UseGuards,
 } from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
-import { ApiOperation } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
+import { AuthenticatedRequest } from 'src/auth/types/authenticated-request';
+import { ResponseCategoryDto } from './dto/response-category.dto';
+import { AuthTokenGuard } from 'src/auth/guards/auth-token.guard';
 
 @Controller('category')
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
+  @ApiBearerAuth('access-token')
   @ApiOperation({ summary: 'Usuário cria suas próprias categorias.' })
+  @UseGuards(AuthTokenGuard)
   @Post()
-  create(@Body() createCategoryDto: CreateCategoryDto) {
-    return this.categoryService.create(createCategoryDto);
+  async create(
+    @Body() dto: CreateCategoryDto,
+    @Req() req: AuthenticatedRequest,
+  ) {
+    const category = await this.categoryService.create(dto, req.user);
+    return new ResponseCategoryDto(category);
   }
 
   @ApiOperation({
