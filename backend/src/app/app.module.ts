@@ -11,6 +11,7 @@ import { TransactionModule } from 'src/transaction/transaction.module';
 import { UserModule } from 'src/user/user.module';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { TestModule } from 'src/test/test.module';
+import { CategorySeedService } from 'src/category/category-seed.service';
 
 @Module({
   imports: [

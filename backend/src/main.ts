@@ -3,9 +3,14 @@ import { AppModule } from './app/app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import helmet from 'helmet';
 import { parseCorsWhitelist } from './common/utils/parse-cors-whitelist';
+import { CategorySeedService } from './category/category-seed.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  const categorySeedService = app.get(CategorySeedService);
+
+  await categorySeedService.seedDefaultCategories();
 
   app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
 

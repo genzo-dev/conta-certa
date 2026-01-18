@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { Category } from './entities/category.entity';
 import { User } from 'src/user/entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
+import { CategoryType } from './enums/category-type.enum';
 
 @Injectable()
 export class CategoryService {
@@ -14,6 +15,15 @@ export class CategoryService {
     @InjectRepository(Category)
     private readonly categoriesRepository: Repository<Category>,
   ) {}
+
+  async findDefaultByName(name) {
+    return this.categoriesRepository.findOne({
+      where: {
+        categoryName: name,
+        isDefault: true,
+      },
+    });
+  }
 
   async create(dto: CreateCategoryDto, user: User) {
     const exists = await this.categoriesRepository.findOne({
@@ -47,6 +57,18 @@ export class CategoryService {
       });
 
     return categoryCreated;
+  }
+
+  async createInternal(data: {
+    icon: string;
+    categoryName: string;
+    type: CategoryType;
+    isDefault: boolean;
+    user?: User | null;
+  }) {
+    return this.categoriesRepository.save(
+      this.categoriesRepository.create(data),
+    );
   }
 
   findAll() {
