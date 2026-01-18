@@ -27,11 +27,19 @@ export class CategoryService {
 
   async create(dto: CreateCategoryDto, user: User) {
     const exists = await this.categoriesRepository.findOne({
-      where: {
-        categoryName: dto.categoryName,
-        user: { id: user.id },
-        isDefault: false,
-      },
+      where: [
+        {
+          categoryName: dto.categoryName,
+          type: dto.type,
+          user: { id: user.id },
+          isDefault: false,
+        },
+        {
+          categoryName: dto.categoryName,
+          type: dto.type,
+          isDefault: true,
+        },
+      ],
     });
 
     if (exists) {
