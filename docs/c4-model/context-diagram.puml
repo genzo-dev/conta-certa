@@ -1,0 +1,18 @@
+@startuml CONTEXT_DIAGRAM
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+title Diagrama de Contexto – Conta Certa
+
+' Atores
+Person(usuario, "Usuário", "Usuário que planeja gerenciar seu financeiro.")
+
+' Sistemas externos
+
+
+' Sistema principal
+System(contaCerta, "Conta Certa", "Plataforma de gerenciamento financeiro pessoal")
+
+' Relacionamentos
+Rel(usuario, contaCerta, "Envia dados para o sistema auxiliar no gerenciamento financeiro")
+
+@enduml

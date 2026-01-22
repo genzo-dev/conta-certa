@@ -1,0 +1,55 @@
+@startuml ER_CONTACERTA
+
+title Diagrama Entidade-Relacionamento - Conta Certa
+
+' ===========================
+' ENTIDADES
+' ===========================
+
+entity "Usuário" as Usuario {
+  *id : UUID <<PK>>
+  --
+  name : string
+  email : string
+  passwordHash : string
+  createdAt : datetime
+}
+
+entity "Categoria" as Categoria {
+  *id : UUID <<PK>>
+  --
+  name : string
+  default : boolean
+  type : string  ' receita | despesa '
+  icon : string
+  createdAt : datetime
+  userId : UUID <<nullable>>
+}
+
+entity "Transação" as Transacao {
+  *id : UUID <<PK>>
+  --
+  value : decimal
+  date : date
+  month : int
+  year : int
+  description : string <<nullable>>
+  createdAt : datetime
+  userId : UUID <<FK>>
+  categoryId : UUID <<FK>>
+}
+
+' ===========================
+' RELACIONAMENTOS
+' ===========================
+
+' Um Usuário tem várias Categorias
+Usuario ||--o{ Categoria : "personaliza"
+
+' Um Usuário tem várias Transações
+Usuario ||--o{ Transacao : "realiza"
+
+' Uma Categoria tem várias Transações
+Categoria ||--o{ Transacao : "classifica"
+
+@enduml
