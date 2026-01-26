@@ -80,7 +80,10 @@ export class CategoryService {
   }
 
   findAll() {
-    return `This action returns all category`;
+    const categoryAll = this.categoriesRepository.find();
+    return categoryAll;
+
+    // return `This action returns all category`;
   }
 
   findOne(id: number) {
