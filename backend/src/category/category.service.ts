@@ -80,7 +80,9 @@ export class CategoryService {
   }
 
   findAll() {
-    const categoryAll = this.categoriesRepository.find();
+    const categoryAll = this.categoriesRepository.find({
+      order: { createdAt: 'DESC' },
+    });
     return categoryAll;
 
     // return `This action returns all category`;
