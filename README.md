@@ -6,65 +6,80 @@ O **Conta Certa** é um projeto criado com o objetivo de auxiliar no gerenciamen
 
 O objetivo é oferecer ao usuário uma **visão clara e objetiva** de seus gastos, ajudando-o a compreender melhor seus hábitos financeiros e tomar decisões mais conscientes.
 
-### Valor do projeto:
-
-O projeto está sendo desenvolvido com o objetivo de simular uma prática completa de desenvolvimento **FullStack**, buscando resolver alguma possível dor ou necessidade real de um determinado público. Toda documentação será disponibilizada tanto no **GitHub** (na pasta [/docs/](https://github.com/genzo-dev/conta-certa/tree/develop/docs) do repositório) quanto pelo **[Notion](https://www.notion.so/Conta-Certa-2a3bc7f8170180149c9ff53d248dade1?source=copy_link)**, além da documentação técnica gerada via Swagger.
-
-O projeto será publicado no LinkedIn de [Gabriel Enzo](https://www.linkedin.com/in/gabriel-enzo-200403233/) (Desenvolvedor FullStack).
-
 ## Tecnologias principais:
 
 - **Next.js** - Frontend
 - **NestJS** - Backend
 - **PostgreSQL + TypeORM** - Banco de dados
 - **Docker** - Infraestrutura (inicialmente apenas para o banco de dados)
-- **Figma** - Design do sistema
 
-## Documentação:
+## 🚀 Como rodar o projeto
 
-- [Requisitos](https://www.notion.so/Requisitos-2a3bc7f8170180db97e3fe1a46811c64?source=copy_link)
-- [Visão Geral do Produto](https://www.notion.so/Vis-o-Geral-2a3bc7f81701806fa1cdc235a82cbe22?source=copy_link)
-- [Diagrama Entidade-Relacionamento (DER)](https://www.notion.so/Diagrama-Entidade-Relacionamento-DER-2a3bc7f81701807da66ae0d178f9b0b1)
-- [Diagrama de Casos de Uso (UML)](https://www.notion.so/Diagrama-de-Casos-de-Uso-UML-2a3bc7f817018092ae3fcf8492aea34b)
-- [Modelo C4 - até o nível 2 (C2)](https://www.notion.so/Modelo-C4-at-C2-2a3bc7f817018098beacda07f4c28857)
+> [!IMPORTANT]
+>
+> Requisitos:
+>
+> - Node.js 20.x (LTS recomendado)
+> - NestJS 11.x
+> - Docker
+> - Docker Compose
 
-Você também pode acessar a documentação a partir do próprio repositório a partir da pasta [`/docs/`](https://github.com/genzo-dev/conta-certa/tree/develop/docs).
+### 1. Configure as variáveis de ambiente
 
-<!-- ## Design (em breve):
+Crie o arquivo `.env` na raiz do projeto:
 
-Endereço URL será disponilizado em breve.
+```bash
+cp .env-example .env
+```
 
-Design desenvolvido pelo [Yuri Nascimento](https://www.linkedin.com/in/oyuri-nas/) (UI/UX Designer). -->
+### 2. Suba o banco de dados com Docker
 
-## Como rodar o projeto (em breve):
+```bash
+  docker compose up -d # sem logs
+```
 
-Instruções de execução com Docker Compose e scripts de inicialização serão adicionadas assim que o backend e frontend forem implementados.
+OU
 
-## Próximos passos:
+```bash
+  docker compose up --build # com logs do container OU ao alterar algo no docker
+```
 
-### Documentação:
+Isso irá iniciar apenas o serviço de banco de dados.
 
-- [x] Desenvolver requisitos
-- [x] Desenvolver documento de visão geral do sistema
-- [x] Criar documentação visual (Casos de Uso, DER e C4)
+### 3. Rodar o backend
 
-### Backend:
+```bash
+cd backend
+cp .env-example .env
+npm install
+npm run start
+```
 
-- [ ] Implementar backend em NestJS
-- [ ] Documentar backend com Swagger
-- [ ] Criar testes com Jest
-- [ ] Configurar containers para backend e banco (Docker Compose)
+A documentação da API estará disponível em:
 
-### Frontend:
+```
+http://localhost:[porta]/docs
+```
 
-- [ ] Desenvolver frontend em Next.js
-- [ ] Criar teste com Cypress
+### 4. Rodar o frontend
 
----
+```bash
+  cd frontend
+  npm install
+  npm run dev
+```
 
-**Observação:** este é um projeto pessoal com fins de publicar no portfólio, simulando uma experiência **FullStack completa**, desde a concepção até a entrega final.
+A aplicação estará disponível em:
 
----
+```
+http://localhost:3000/
+```
+
+> [!NOTE]
+>
+> O banco de dados roda somente no Docker.
+> O backend depende do banco de dados estar em execução.
+> O frontend depende do backend estar rodando.
 
 ### Tecnologias e ferramentas utilizadas:
 
@@ -76,6 +91,4 @@ Instruções de execução com Docker Compose e scripts de inicialização serã
 ![Swagger](https://img.shields.io/badge/Swagger-85EA2D?logo=swagger&logoColor=000)
 ![Jest](https://img.shields.io/badge/Jest-C21325?logo=jest&logoColor=fff)
 ![Insomnia](https://img.shields.io/badge/Insomnia-4000BF?logo=insomnia&logoColor=fff)
-![Figma](https://img.shields.io/badge/Figma-F24E1E?logo=figma&logoColor=fff)
 ![Git](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=fff)
-![Notion](https://img.shields.io/badge/Notion-000?logo=notion&logoColor=fff)
