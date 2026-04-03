@@ -22,9 +22,10 @@ export default function Menu() {
     <div className="relative">
       {!isOpen && (
         <button
+          name="menuButton"
           className={clsx(
             "absolute left-0 ml-4 sm:ml-6 md:ml-12 mt-5 border p-1 rounded-md hover:cursor-pointer",
-            "hover:bg-gray-200 transition"
+            "hover:bg-gray-200 transition",
           )}
           onClick={() => setIsOpen(!isOpen)}
         >
@@ -36,7 +37,7 @@ export default function Menu() {
         <div
           className={clsx(
             "absolute h-full w-screen sm:w-96 z-40",
-            "bg-gray-300 border-r border-gray-400"
+            "bg-gray-300 border-r border-gray-400",
           )}
         >
           <div className="h-full flex flex-col pt-8 px-6">
@@ -48,7 +49,7 @@ export default function Menu() {
               <button
                 className={clsx(
                   "border p-1 rounded-md hover:cursor-pointer transition",
-                  "hover:bg-gray-200"
+                  "hover:bg-gray-200",
                 )}
                 onClick={() => setIsOpen(!isOpen)}
               >

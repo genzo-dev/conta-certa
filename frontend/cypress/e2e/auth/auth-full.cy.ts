@@ -10,10 +10,11 @@ describe("Auth e2e Full Flow", () => {
     // Register
     cy.visit("/register");
     cy.register("e2eTestUSER", email, "123456", "123456");
-    cy.get('button[type="submit"]').click();
     cy.url().should("not.include", "/login");
 
     // Logout
+    cy.url().should("eq", "http://localhost:3000/?registerUser=1");
+    cy.get('button[name="menuButton"]').click();
     cy.get('button[type="submit"][name="logout"]').click();
     cy.url().should("include", "/login");
 

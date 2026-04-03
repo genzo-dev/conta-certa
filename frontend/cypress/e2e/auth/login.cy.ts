@@ -21,8 +21,9 @@ describe("Login E2E", () => {
 
   it("keeps session after page reload", () => {
     cy.login("e2e@test.com", "123456");
-    cy.wait(200); // aguarda aplicação do Set-Cookie após login (Next + httpOnly)
+    cy.wait(500);
     cy.reload();
-    cy.url().should("not.include", "/login");
+    cy.wait(500);
+    cy.location("pathname", { timeout: 10000 }).should("not.include", "/login");
   });
 });

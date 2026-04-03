@@ -62,11 +62,11 @@ Cypress.Commands.add(
   (userName: string, email: string, password: string, password2: string) => {
     cy.visit("/register");
 
-    cy.get('input[name="userName"]').type(userName);
-    cy.get('input[name="email"]').type(email);
-    cy.get('input[name="password"]').type(password);
-    cy.get('input[name="password2"]').type(password2);
+    cy.get('input[name="userName"]').should("not.be.disabled").type(userName);
+    cy.get('input[name="email"]').should("not.be.disabled").type(email);
+    cy.get('input[name="password"]').should("not.be.disabled").type(password);
+    cy.get('input[name="password2"]').should("not.be.disabled").type(password2);
 
     cy.get('button[type="submit"]').click();
-  }
+  },
 );

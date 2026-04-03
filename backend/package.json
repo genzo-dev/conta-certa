@@ -8,9 +8,10 @@
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "dev:db": "docker compose up -d",
+    "log:dev:db": "docker compose up --build --abort-on-container-exit",
     "start": "nest start",
     "start:dev": "nest start --watch",
-    "start:dev:db": "docker compose up --build --abort-on-container-exit",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
@@ -19,7 +20,8 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "NODE_ENV=test jest --config ./test/jest-e2e.json",
-    "test:db": "docker compose --env-file .env.test -f docker-compose.test.yml -p conta_certa_test up --build --abort-on-container-exit"
+    "test:db": "docker compose --env-file .env.test -f docker-compose.test.yml -p conta_certa_test up --build --abort-on-container-exit",
+    "test:e2e:full": "NODE_ENV=test npm run start:dev"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",

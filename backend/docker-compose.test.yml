@@ -1,7 +1,6 @@
 services:
   postgres:
     image: postgres:16
-    container_name: conta_certa_test
     env_file:
       - .env.test
     ports:

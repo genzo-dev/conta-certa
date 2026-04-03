@@ -8,8 +8,6 @@ describe("Register E2E", () => {
   it("should register with valid credentials", () => {
     cy.register("e2eTestUSER", email, "123456", "123456");
 
-    cy.get('button[type="submit"]').click();
-
     cy.url().should("not.include", "/login");
   });
 
