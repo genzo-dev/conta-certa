@@ -62,7 +62,7 @@ npm run start:dev
 Documentação de API (Swagger):
 
 ```bash
-http://localhost:3001/docs/
+http://localhost:3001/docs#/
 ```
 
 ### FRONTEND
