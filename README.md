@@ -121,7 +121,7 @@ npm run test:watch # roda os testes unitários com --watch (rodaram sempre que a
 
 ```bash
 cd backend
-cp .env-example .env
+cp .env.test-example .env.test
 ```
 
 #### 2. Rode o banco dos testes em memória:
