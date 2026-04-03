@@ -17,8 +17,8 @@ import { TestModule } from 'src/test/test.module';
     ThrottlerModule.forRoot({
       throttlers: [
         {
-          ttl: 10000,
-          limit: 10,
+          ttl: 60,
+          limit: 30,
         },
       ],
     }),

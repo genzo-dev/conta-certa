@@ -20,6 +20,7 @@ import {
 } from '@nestjs/swagger';
 import { AuthTokenGuard } from 'src/auth/guards/auth-token.guard';
 import { UserResponseDto } from './dto/user-response.dto';
+import { Throttle, ThrottlerGuard } from '@nestjs/throttler';
 
 @Controller('user')
 export class UserController {
@@ -28,6 +29,8 @@ export class UserController {
   @ApiOperation({ summary: 'Usuário poderá criar sua conta.' })
   @ApiCreatedResponse({ description: 'Conta/Usuário criado com sucesso.' })
   @ApiConflictResponse({ description: 'E-mail já cadastrado.' })
+  @UseGuards(ThrottlerGuard)
+  @Throttle({ default: { limit: 10, ttl: 10000 } })
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
