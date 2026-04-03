@@ -112,7 +112,7 @@ OU
 
 ```bash
 cd backend
-npm run test # roda os testes unitários com --watch (rodaram sempre que atualizar algum arquivo de teste unitário)
+npm run test:watch # roda os testes unitários com --watch (rodaram sempre que atualizar algum arquivo de teste unitário)
 ```
 
 ### Testes e2e e integração backend
@@ -133,6 +133,7 @@ npm run test:db
 #### 3. Rode os testes e2e e integração em outro terminal dentro da pasta `/backend/`:
 
 ```bash
+cd backend
 npm run test:e2e
 ```
 
